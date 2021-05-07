@@ -101,16 +101,16 @@ function rocketScale([scaleTo, scaleStep, timeout = 0]) {
 
 function spaceChangeScale([scaleTo, scaleStep, timeout = 0]) {
   setTimeout(() => {
-    const transform = +scene.style.transform
+    const transform = +space.style.transform
       .replace('scale(', '')
       .replace(')', '');
     if (transform > scaleTo) {
       const newTransformStyle = `scale(${transform - scaleStep})`;
-      scene.style.transform = newTransformStyle;
+      space.style.transform = newTransformStyle;
       requestAnimationFrame(spaceChangeScale.bind(this, [scaleTo, scaleStep]));
     }
     if (transform <= scaleTo) {
-      scene.style.transform = null;
+      space.style.transform = null;
     }
   }, timeout);
 }
@@ -131,7 +131,7 @@ setTimeout(() => {
 initRocketStyleSettings();
 
 startRocketFlyingAroundEarth();
-scene.style.transform = 'scale(50)';
+space.style.transform = 'scale(50)';
 // planetWithOrbit.style.zIndex = 30;
 // planet.style.zIndex = 40;
 
