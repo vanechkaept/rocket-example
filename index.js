@@ -5,6 +5,8 @@ let rocket = document.querySelector('.rocket');
 let rocketBlock = document.querySelector('.rocket_block');
 let planetWithOrbit = document.querySelector('.planet_with_orbit');
 let space = document.querySelector('.space');
+let planet = document.querySelector('.planet');
+let scene = document.querySelector('.scene');
 
 let rocketStyleSettings = {
   left: '-11vw',
@@ -99,13 +101,16 @@ function rocketScale([scaleTo, scaleStep, timeout = 0]) {
 
 function spaceChangeScale([scaleTo, scaleStep, timeout = 0]) {
   setTimeout(() => {
-    const transform = +space.style.transform
+    const transform = +scene.style.transform
       .replace('scale(', '')
       .replace(')', '');
     if (transform > scaleTo) {
       const newTransformStyle = `scale(${transform - scaleStep})`;
-      space.style.transform = newTransformStyle;
+      scene.style.transform = newTransformStyle;
       requestAnimationFrame(spaceChangeScale.bind(this, [scaleTo, scaleStep]));
+    }
+    if (transform <= scaleTo) {
+      scene.style.transform = null;
     }
   }, timeout);
 }
@@ -126,5 +131,8 @@ setTimeout(() => {
 initRocketStyleSettings();
 
 startRocketFlyingAroundEarth();
-// space.style.transform = 'scale(50)';
+scene.style.transform = 'scale(50)';
+// planetWithOrbit.style.zIndex = 30;
+// planet.style.zIndex = 40;
+
 spaceChangeScale([1, 0.5, 0.5]);
