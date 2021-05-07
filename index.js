@@ -131,7 +131,7 @@ setTimeout(() => {
 initRocketStyleSettings();
 
 startRocketFlyingAroundEarth();
-space.style.transform = 'scale(50)';
+space.style.transform = 'scale(100)';
 // planetWithOrbit.style.zIndex = 30;
 // planet.style.zIndex = 40;
 
